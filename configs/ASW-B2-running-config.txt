@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 1887 bytes
+Current configuration : 1949 bytes
 !
 version 15.0
 no service timestamps log datetime msec
@@ -18,7 +18,7 @@ username cisco secret 5 $1$mERr$Bok4KDfVutXOJolNq009M/
 !
 !
 !
-spanning-tree mode pvst
+spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 !
 interface FastEthernet0/1
@@ -26,6 +26,8 @@ interface FastEthernet0/1
  switchport mode access
  switchport nonegotiate
  switchport voice vlan 20
+ spanning-tree portfast
+ spanning-tree bpduguard enable
 !
 interface FastEthernet0/2
  shutdown

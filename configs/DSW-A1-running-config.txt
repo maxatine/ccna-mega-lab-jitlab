@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3356 bytes
+Current configuration : 3440 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -37,7 +37,9 @@ username cisco secret 9 $9$J19FIAftPZf7c3$Mux3wTz1Kth/NxeyEk.E8.QBckaZchVfllsGnx
 !
 !
 !
-spanning-tree mode pvst
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10,99 priority 4096
+spanning-tree vlan 20,40 priority 8192
 !
 !
 !
@@ -161,7 +163,7 @@ interface Vlan1
  shutdown
 !
 interface Vlan10
- mac-address 000c.cfe7.2702
+ mac-address 000c.cfe7.2701
  ip address 10.1.0.2 255.255.255.0
  standby version 2
  standby 2 ip 10.1.0.1
@@ -169,19 +171,19 @@ interface Vlan10
  standby 2 preempt
 !
 interface Vlan20
- mac-address 000c.cfe7.2703
+ mac-address 000c.cfe7.2702
  ip address 10.2.0.2 255.255.255.0
  standby version 2
  standby 3 ip 10.2.0.1
 !
 interface Vlan40
- mac-address 000c.cfe7.2704
+ mac-address 000c.cfe7.2703
  ip address 10.6.0.2 255.255.255.0
  standby version 2
  standby 4 ip 10.6.0.1
 !
 interface Vlan99
- mac-address 000c.cfe7.2701
+ mac-address 000c.cfe7.2704
  ip address 10.0.0.2 255.255.255.240
  standby version 2
  standby 1 ip 10.0.0.1
