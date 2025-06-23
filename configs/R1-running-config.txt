@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 942 bytes
+Current configuration : 1012 bytes
 !
 version 15.1
 no service timestamps log datetime msec
@@ -45,17 +45,18 @@ spanning-tree mode pvst
 !
 !
 !
+interface Loopback0
+ ip address 10.0.0.76 255.255.255.255
+!
 interface GigabitEthernet0/0
- no ip address
+ ip address 10.0.0.33 255.255.255.252
  duplex auto
  speed auto
- shutdown
 !
 interface GigabitEthernet0/1
- no ip address
+ ip address 10.0.0.37 255.255.255.252
  duplex auto
  speed auto
- shutdown
 !
 interface GigabitEthernet0/2
  no ip address
@@ -64,12 +65,10 @@ interface GigabitEthernet0/2
  shutdown
 !
 interface GigabitEthernet0/0/0
- no ip address
- shutdown
+ ip address dhcp
 !
 interface GigabitEthernet0/1/0
- no ip address
- shutdown
+ ip address dhcp
 !
 interface Vlan1
  no ip address
@@ -97,4 +96,3 @@ line vty 0 4
 !
 !
 end
-
