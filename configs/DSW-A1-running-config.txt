@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2133 bytes
+Current configuration : 2383 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -67,9 +67,17 @@ interface GigabitEthernet1/0/3
  switchport nonegotiate
 !
 interface GigabitEthernet1/0/4
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,40,99
+ switchport mode trunk
+ switchport nonegotiate
  channel-group 1 mode desirable
 !
 interface GigabitEthernet1/0/5
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,40,99
+ switchport mode trunk
+ switchport nonegotiate
  channel-group 1 mode desirable
 !
 interface GigabitEthernet1/0/6
