@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 1633 bytes
+Current configuration : 2133 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -43,12 +43,28 @@ spanning-tree mode pvst
 !
 !
 interface Port-channel1
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,40,99
+ switchport mode trunk
+ switchport nonegotiate
 !
 interface GigabitEthernet1/0/1
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,40,99
+ switchport mode trunk
+ switchport nonegotiate
 !
 interface GigabitEthernet1/0/2
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,40,99
+ switchport mode trunk
+ switchport nonegotiate
 !
 interface GigabitEthernet1/0/3
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,40,99
+ switchport mode trunk
+ switchport nonegotiate
 !
 interface GigabitEthernet1/0/4
  channel-group 1 mode desirable

@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 1218 bytes
+Current configuration : 1468 bytes
 !
 version 15.0
 no service timestamps log datetime msec
@@ -70,8 +70,16 @@ interface FastEthernet0/23
 interface FastEthernet0/24
 !
 interface GigabitEthernet0/1
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,30,99
+ switchport mode trunk
+ switchport nonegotiate
 !
 interface GigabitEthernet0/2
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 10,20,30,99
+ switchport mode trunk
+ switchport nonegotiate
 !
 interface Vlan1
  no ip address
