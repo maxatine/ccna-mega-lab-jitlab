@@ -1,4 +1,8 @@
 Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DSW-B1#show run
+Building configuration...
 
 Current configuration : 2377 bytes
 !
