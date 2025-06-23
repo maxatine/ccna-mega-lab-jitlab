@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2766 bytes
+Current configuration : 3352 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -159,6 +159,34 @@ interface GigabitEthernet1/1/4
 interface Vlan1
  no ip address
  shutdown
+!
+interface Vlan10
+ mac-address 0001.635b.4c02
+ ip address 10.3.0.2 255.255.255.0
+ standby version 2
+ standby 2 ip 10.3.0.1
+ standby 2 priority 105
+ standby 2 preempt
+!
+interface Vlan20
+ mac-address 0001.635b.4c03
+ ip address 10.4.0.2 255.255.255.0
+ standby version 2
+ standby 3 ip 10.4.0.1
+!
+interface Vlan30
+ mac-address 0001.635b.4c04
+ ip address 10.5.0.2 255.255.255.0
+ standby version 2
+ standby 4 ip 10.5.0.1
+!
+interface Vlan99
+ mac-address 0001.635b.4c01
+ ip address 10.0.0.18 255.255.255.240
+ standby version 2
+ standby 1 ip 10.0.0.17
+ standby 1 priority 105
+ standby 1 preempt
 !
 ip classless
 !
