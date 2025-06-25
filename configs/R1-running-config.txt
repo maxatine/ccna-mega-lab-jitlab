@@ -1,6 +1,9 @@
 Building configuration...
+[OK]
+R1(config-router)#do sh run
+Building configuration...
 
-Current configuration : 1277 bytes
+Current configuration : 1403 bytes
 !
 version 15.1
 no service timestamps log datetime msec
@@ -86,8 +89,11 @@ router ospf 1
  router-id 10.0.0.76
  log-adjacency-changes
  passive-interface Loopback0
+ default-information originate
 !
 ip classless
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/0/0 
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1/0 2
 !
 ip flow-export version 9
 !
