@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 1012 bytes
+Current configuration : 1277 bytes
 !
 version 15.1
 no service timestamps log datetime msec
@@ -47,19 +47,27 @@ spanning-tree mode pvst
 !
 interface Loopback0
  ip address 10.0.0.76 255.255.255.255
+ ip ospf 1 area 0
 !
 interface GigabitEthernet0/0
  ip address 10.0.0.33 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ ip ospf 1 area 0
  duplex auto
  speed auto
 !
 interface GigabitEthernet0/1
  ip address 10.0.0.37 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ ip ospf 1 area 0
  duplex auto
  speed auto
 !
 interface GigabitEthernet0/2
  no ip address
+ ip ospf 1 area 0
  duplex auto
  speed auto
  shutdown
@@ -73,6 +81,11 @@ interface GigabitEthernet0/1/0
 interface Vlan1
  no ip address
  shutdown
+!
+router ospf 1
+ router-id 10.0.0.76
+ log-adjacency-changes
+ passive-interface Loopback0
 !
 ip classless
 !

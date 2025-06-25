@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3440 bytes
+Current configuration : 3911 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -147,10 +147,14 @@ interface GigabitEthernet1/0/24
 interface GigabitEthernet1/1/1
  no switchport
  ip address 10.0.0.50 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
 !
 interface GigabitEthernet1/1/2
  no switchport
  ip address 10.0.0.66 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
 !
 interface GigabitEthernet1/1/3
  shutdown
@@ -189,6 +193,20 @@ interface Vlan99
  ip address 10.0.0.3 255.255.255.240
  standby version 2
  standby 1 ip 10.0.0.1
+!
+router ospf 1
+ router-id 10.0.0.80
+ log-adjacency-changes
+ passive-interface Loopback0
+ passive-interface Vlan10
+ passive-interface Vlan20
+ passive-interface Vlan40
+ network 10.0.0.50 0.0.0.0 area 0
+ network 10.0.0.66 0.0.0.0 area 0
+ network 10.1.0.3 0.0.0.0 area 0
+ network 10.2.0.3 0.0.0.0 area 0
+ network 10.6.0.3 0.0.0.0 area 0
+ network 10.0.0.3 0.0.0.0 area 0
 !
 ip classless
 !

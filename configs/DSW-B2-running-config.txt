@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3416 bytes
+Current configuration : 3804 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -164,7 +164,7 @@ interface Vlan1
 !
 interface Vlan10
  mac-address 0050.0f7b.3c02
- no ip address
+ ip address 10.3.0.3 255.255.255.0
  standby version 2
  standby 2 ip 10.3.0.1
 !
@@ -189,6 +189,20 @@ interface Vlan99
  ip address 10.0.0.19 255.255.255.240
  standby version 2
  standby 1 ip 10.0.0.17
+!
+router ospf 1
+ router-id 10.0.0.82
+ log-adjacency-changes
+ passive-interface Loopback0
+ passive-interface Vlan10
+ passive-interface Vlan20
+ passive-interface Vlan30
+ network 10.0.0.58 0.0.0.0 area 0
+ network 10.0.0.74 0.0.0.0 area 0
+ network 10.4.0.3 0.0.0.0 area 0
+ network 10.5.0.3 0.0.0.0 area 0
+ network 10.0.0.19 0.0.0.0 area 0
+ network 10.3.0.3 0.0.0.0 area 0
 !
 ip classless
 !
