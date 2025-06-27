@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3942 bytes
+Current configuration : 4029 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -169,6 +169,7 @@ interface Vlan1
 interface Vlan10
  mac-address 0001.635b.4c01
  ip address 10.3.0.2 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 2 ip 10.3.0.1
  standby 2 priority 105
@@ -177,12 +178,14 @@ interface Vlan10
 interface Vlan20
  mac-address 0001.635b.4c02
  ip address 10.4.0.2 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 3 ip 10.4.0.1
 !
 interface Vlan30
  mac-address 0001.635b.4c03
  ip address 10.5.0.2 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 4 ip 10.5.0.1
 !

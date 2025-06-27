@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3945 bytes
+Current configuration : 4050 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -14,6 +14,7 @@ enable secret 9 $9$J19FIAftPZf7c3$l3koe1VkzliJg5KQU.JgBhXj4RzTxEUDZnF2s1b.Hn6
 !
 !
 !
+ip dhcp pool B-PC
 !
 !
 !
@@ -169,6 +170,7 @@ interface Vlan1
 interface Vlan10
  mac-address 000c.cfe7.2701
  ip address 10.1.0.2 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 2 ip 10.1.0.1
  standby 2 priority 105
@@ -177,12 +179,14 @@ interface Vlan10
 interface Vlan20
  mac-address 000c.cfe7.2702
  ip address 10.2.0.2 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 3 ip 10.2.0.1
 !
 interface Vlan40
  mac-address 000c.cfe7.2703
  ip address 10.6.0.2 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 4 ip 10.6.0.1
 !
