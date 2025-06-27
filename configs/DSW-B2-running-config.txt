@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3804 bytes
+Current configuration : 4131 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -35,6 +35,8 @@ username cisco secret 9 $9$J19FIAftPZf7c3$Mux3wTz1Kth/NxeyEk.E8.QBckaZchVfllsGnx
 !
 !
 !
+ip domain-name jeremysitlab.com
+ip name-server 10.5.0.4
 !
 !
 spanning-tree mode rapid-pvst
@@ -165,12 +167,14 @@ interface Vlan1
 interface Vlan10
  mac-address 0050.0f7b.3c02
  ip address 10.3.0.3 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 2 ip 10.3.0.1
 !
 interface Vlan20
  mac-address 0050.0f7b.3c03
  ip address 10.4.0.3 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 3 ip 10.4.0.1
  standby 3 priority 105
@@ -179,6 +183,7 @@ interface Vlan20
 interface Vlan30
  mac-address 0050.0f7b.3c04
  ip address 10.5.0.3 255.255.255.0
+ ip helper-address 10.0.0.76
  standby version 2
  standby 4 ip 10.5.0.1
  standby 4 priority 105
@@ -213,9 +218,13 @@ ip flow-export version 9
 !
 !
 !
+snmp-server community SNMPSTRING RO
 !
+logging trap debugging
+logging 10.5.0.4
 line con 0
  exec-timeout 30 0
+ logging synchronous
  login local
 !
 line aux 0
@@ -225,5 +234,8 @@ line vty 0 4
 !
 !
 !
+ntp authentication-key 1 md5 08224F4008 7
+ntp trusted-key 1
+ntp server 10.0.0.76 key 1
 !
 end

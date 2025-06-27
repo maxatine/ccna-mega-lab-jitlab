@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3998 bytes
+Current configuration : 4238 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -35,6 +35,8 @@ username cisco secret 9 $9$J19FIAftPZf7c3$Mux3wTz1Kth/NxeyEk.E8.QBckaZchVfllsGnx
 !
 !
 !
+ip domain-name jeremysitlab.com
+ip name-server 10.5.0.4
 !
 !
 spanning-tree mode rapid-pvst
@@ -220,9 +222,13 @@ ip flow-export version 9
 !
 !
 !
+snmp-server community SNMPSTRING RO
 !
+logging trap debugging
+logging 10.5.0.4
 line con 0
  exec-timeout 30 0
+ logging synchronous
  login local
 !
 line aux 0
@@ -232,5 +238,8 @@ line vty 0 4
 !
 !
 !
+ntp authentication-key 1 md5 08224F4008 7
+ntp trusted-key 1
+ntp server 10.0.0.76 key 1
 !
 end

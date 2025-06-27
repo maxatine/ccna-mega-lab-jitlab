@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2657 bytes
+Current configuration : 2851 bytes
 !
 version 15.1
 no service timestamps log datetime msec
@@ -143,9 +143,13 @@ ip flow-export version 9
 !
 !
 !
+snmp-server community SNMPSTRING RO
 !
+logging trap debugging
+logging 10.5.0.4
 line con 0
  exec-timeout 30 0
+ logging synchronous
  login local
 !
 line aux 0
@@ -154,5 +158,9 @@ line vty 0 4
  login
 !
 !
+ntp authentication-key 1 md5 08224F4008 7
+ntp trusted-key 1
+ntp server 216.239.35.0
+ntp master 5
 !
 end
