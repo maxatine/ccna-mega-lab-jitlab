@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3260 bytes
+Current configuration : 3684 bytes
 !
 version 15.3
 no service timestamps log datetime msec
@@ -76,6 +76,8 @@ license boot module c2900 technology-package FoundationSuiteK9
 !
 !
 !
+lldp run
+!
 !
 !
 !
@@ -85,7 +87,6 @@ license boot module c2900 technology-package FoundationSuiteK9
 ip ftp username cisco
 ip ftp password cisco
 ip ssh version 2
-ip domain-name jeremysitlab.com
 !
 !
 spanning-tree mode pvst
@@ -104,6 +105,7 @@ interface GigabitEthernet0/0
  ip ospf network point-to-point
  ip ospf priority 1
  ip ospf 1 area 0
+ ip nat inside
  duplex auto
  speed auto
 !
@@ -112,6 +114,7 @@ interface GigabitEthernet0/1
  ip ospf network point-to-point
  ip ospf priority 1
  ip ospf 1 area 0
+ ip nat inside
  duplex auto
  speed auto
 !
@@ -124,9 +127,11 @@ interface GigabitEthernet0/2
 !
 interface GigabitEthernet0/0/0
  ip address dhcp
+ ip nat outside
 !
 interface GigabitEthernet0/1/0
  ip address dhcp
+ ip nat outside
 !
 interface Vlan1
  no ip address
@@ -138,6 +143,9 @@ router ospf 1
  passive-interface Loopback0
  default-information originate
 !
+ip nat pool POOL1 203.0.113.200 203.0.113.207 netmask 255.255.255.248
+ip nat inside source list 2 pool POOL1 overload
+ip nat inside source static 10.5.0.4 203.0.113.113 
 ip classless
 ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/0/0 
 ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1/0 2
@@ -146,6 +154,13 @@ ip flow-export version 9
 !
 !
 access-list 1 permit 10.1.0.0 0.0.0.255
+access-list 2 permit 10.1.0.0 0.0.0.255
+access-list 2 permit 10.2.0.0 0.0.0.255
+access-list 2 permit 10.3.0.0 0.0.0.255
+access-list 2 permit 10.4.0.0 0.0.0.255
+access-list 2 permit 10.6.0.0 0.0.0.255
+!
+no cdp run
 !
 !
 !

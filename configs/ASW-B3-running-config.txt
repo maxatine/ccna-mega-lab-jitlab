@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2146 bytes
+Current configuration : 2188 bytes
 !
 version 15.0
 no service timestamps log datetime msec
@@ -20,11 +20,14 @@ username cisco secret 5 $1$mERr$Bok4KDfVutXOJolNq009M/
 !
 !
 !
+lldp run
+!
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 !
 interface FastEthernet0/1
  switchport access vlan 30
+ no lldp transmit
  switchport mode access
  switchport nonegotiate
  spanning-tree portfast
@@ -119,6 +122,8 @@ interface Vlan99
  ip address 10.0.0.22 255.255.255.240
 !
 ip default-gateway 10.0.0.17
+!
+no cdp run
 !
 !
 !

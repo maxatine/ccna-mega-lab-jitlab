@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 4481 bytes
+Current configuration : 4505 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -26,6 +26,8 @@ no ipv6 cef
 !
 username cisco secret 9 $9$J19FIAftPZf7c3$Mux3wTz1Kth/NxeyEk.E8.QBckaZchVfllsGnxO8/0A
 !
+!
+lldp run
 !
 !
 !
@@ -221,6 +223,8 @@ ip flow-export version 9
 !
 !
 access-list 1 permit 10.1.0.0 0.0.0.255
+!
+no cdp run
 !
 !
 !
