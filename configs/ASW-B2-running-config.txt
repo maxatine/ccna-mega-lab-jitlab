@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 1949 bytes
+Current configuration : 2172 bytes
 !
 version 15.0
 no service timestamps log datetime msec
@@ -13,6 +13,8 @@ enable secret 5 $1$mERr$LG1PCX0pnG7g1VqYOLG9a/
 !
 !
 !
+ip ssh version 2
+ip domain-name jeremysitlab.com
 !
 username cisco secret 5 $1$mERr$Bok4KDfVutXOJolNq009M/
 !
@@ -122,14 +124,21 @@ ip default-gateway 10.0.0.17
 !
 !
 !
+access-list 1 permit 10.1.0.0 0.0.0.255
 line con 0
  login local
  exec-timeout 30 0
 !
 line vty 0 4
- login
+ access-class 1 in
+ logging synchronous
+ login local
+ transport input ssh
 line vty 5 15
- login
+ access-class 1 in
+ logging synchronous
+ login local
+ transport input ssh
 !
 !
 !

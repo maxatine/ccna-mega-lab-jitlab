@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2874 bytes
+Current configuration : 3086 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -35,6 +35,7 @@ username cisco secret 9 $9$J19FIAftPZf7c3$Mux3wTz1Kth/NxeyEk.E8.QBckaZchVfllsGnx
 !
 !
 !
+ip ssh version 2
 ip domain-name jeremysitlab.com
 ip name-server 10.5.0.4
 !
@@ -154,6 +155,7 @@ ip classless
 ip flow-export version 9
 !
 !
+access-list 1 permit 10.1.0.0 0.0.0.255
 !
 !
 !
@@ -170,7 +172,15 @@ line con 0
 line aux 0
 !
 line vty 0 4
- login
+ access-class 1 in
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ access-class 1 in
+ logging synchronous
+ login local
+ transport input ssh
 !
 !
 !
