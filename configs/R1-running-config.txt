@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3684 bytes
+Current configuration : 3845 bytes
 !
 version 15.3
 no service timestamps log datetime msec
@@ -64,6 +64,8 @@ ip dhcp pool Wi-Fi
 !
 !
 no ip cef
+ipv6 unicast-routing
+!
 no ipv6 cef
 !
 !
@@ -108,6 +110,7 @@ interface GigabitEthernet0/0
  ip nat inside
  duplex auto
  speed auto
+ ipv6 address 2001:DB8:A1::/64 eui-64
 !
 interface GigabitEthernet0/1
  ip address 10.0.0.37 255.255.255.252
@@ -117,6 +120,7 @@ interface GigabitEthernet0/1
  ip nat inside
  duplex auto
  speed auto
+ ipv6 address 2001:DB8:A2::/64 eui-64
 !
 interface GigabitEthernet0/2
  no ip address
@@ -128,10 +132,12 @@ interface GigabitEthernet0/2
 interface GigabitEthernet0/0/0
  ip address dhcp
  ip nat outside
+ ipv6 address 2001:DB8:A::2/64
 !
 interface GigabitEthernet0/1/0
  ip address dhcp
  ip nat outside
+ ipv6 address 2001:DB8:B::2/64
 !
 interface Vlan1
  no ip address

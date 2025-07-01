@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3110 bytes
+Current configuration : 3184 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -19,6 +19,8 @@ enable secret 9 $9$J19FIAftPZf7c3$l3koe1VkzliJg5KQU.JgBhXj4RzTxEUDZnF2s1b.Hn6
 !
 no ip cef
 ip routing
+!
+ipv6 unicast-routing
 !
 no ipv6 cef
 !
@@ -55,6 +57,7 @@ interface Loopback0
 interface Port-channel1
  no switchport
  ip address 10.0.0.42 255.255.255.252
+ ipv6 enable
 !
 interface GigabitEthernet1/0/1
  no switchport
@@ -63,6 +66,7 @@ interface GigabitEthernet1/0/1
  ip ospf priority 1
  duplex auto
  speed auto
+ ipv6 address 2001:DB8:A2::/64 eui-64
 !
 interface GigabitEthernet1/0/2
  channel-group 1 mode desirable
