@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3845 bytes
+Current configuration : 3928 bytes
 !
 version 15.3
 no service timestamps log datetime msec
@@ -158,6 +158,8 @@ ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1/0 2
 !
 ip flow-export version 9
 !
+ipv6 route ::/0 2001:DB8:A::1
+ipv6 route ::/0 GigabitEthernet0/1/0 2001:DB8:B::1 2
 !
 access-list 1 permit 10.1.0.0 0.0.0.255
 access-list 2 permit 10.1.0.0 0.0.0.255
