@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2188 bytes
+Current configuration : 2591 bytes
 !
 version 15.0
 no service timestamps log datetime msec
@@ -18,7 +18,12 @@ ip domain-name jeremysitlab.com
 !
 username cisco secret 5 $1$mERr$Bok4KDfVutXOJolNq009M/
 !
+ip arp inspection vlan 10,30,40,99
+ip arp inspection validate src-mac dst-mac ip
 !
+ip dhcp snooping vlan 10,30,40,99
+no ip dhcp snooping information option
+ip dhcp snooping
 !
 lldp run
 !
@@ -30,6 +35,9 @@ interface FastEthernet0/1
  no lldp transmit
  switchport mode access
  switchport nonegotiate
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
  spanning-tree portfast
  spanning-tree bpduguard enable
 !
@@ -105,12 +113,16 @@ interface FastEthernet0/24
 interface GigabitEthernet0/1
  switchport trunk native vlan 1000
  switchport trunk allowed vlan 10,20,30,99
+ ip arp inspection trust
+ ip dhcp snooping limit rate 15
  switchport mode trunk
  switchport nonegotiate
 !
 interface GigabitEthernet0/2
  switchport trunk native vlan 1000
  switchport trunk allowed vlan 10,20,30,99
+ ip arp inspection trust
+ ip dhcp snooping limit rate 15
  switchport mode trunk
  switchport nonegotiate
 !

@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 4474 bytes
+Current configuration : 4673 bytes
 !
 version 16.3.2
 no service timestamps log datetime msec
@@ -175,6 +175,7 @@ interface Vlan10
  mac-address 00d0.bc16.1201
  ip address 10.1.0.3 255.255.255.0
  ip helper-address 10.0.0.76
+ ip access-group OfficeA_to_OfficeB in
  standby version 2
  standby 2 ip 10.1.0.1
 !
@@ -222,6 +223,10 @@ ip flow-export version 9
 !
 !
 access-list 1 permit 10.1.0.0 0.0.0.255
+ip access-list extended OfficeA_to_OfficeB
+ permit icmp 10.1.0.0 0.0.0.255 10.3.0.0 0.0.0.255
+ deny ip 10.1.0.0 0.0.0.255 10.3.0.0 0.0.0.255
+ permit ip any any
 !
 no cdp run
 !
