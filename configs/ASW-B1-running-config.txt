@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 2627 bytes
+Current configuration : 2703 bytes
 !
 version 15.0
 no service timestamps log datetime msec
@@ -32,6 +32,7 @@ spanning-tree extend system-id
 !
 interface FastEthernet0/1
  switchport access vlan 99
+ ip dhcp snooping limit rate 15
  no lldp transmit
  switchport mode access
  switchport nonegotiate
@@ -39,6 +40,7 @@ interface FastEthernet0/1
  switchport port-security maximum 2
  switchport port-security mac-address sticky 
  switchport port-security violation restrict 
+ switchport port-security mac-address sticky 00E0.F9EA.1401
  spanning-tree portfast
  spanning-tree bpduguard enable
 !
@@ -115,7 +117,7 @@ interface GigabitEthernet0/1
  switchport trunk native vlan 1000
  switchport trunk allowed vlan 10,20,30,99
  ip arp inspection trust
- ip dhcp snooping limit rate 15
+ ip dhcp snooping trust
  switchport mode trunk
  switchport nonegotiate
 !
@@ -123,7 +125,7 @@ interface GigabitEthernet0/2
  switchport trunk native vlan 1000
  switchport trunk allowed vlan 10,20,30,99
  ip arp inspection trust
- ip dhcp snooping limit rate 15
+ ip dhcp snooping trust
  switchport mode trunk
  switchport nonegotiate
 !
